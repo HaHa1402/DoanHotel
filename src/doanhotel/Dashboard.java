@@ -22,7 +22,7 @@ public class Dashboard extends javax.swing.JFrame {
     private void GetRoom() {
         try {
             String S = "Free";
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb", "root", "123456");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb", "root", "14022004");
             St1 = Con.createStatement();
             Rs1 = St1.executeQuery("select * from RoomTbl ");
             while (Rs1.next()) {
@@ -46,6 +46,8 @@ public class Dashboard extends javax.swing.JFrame {
         logoutBtn = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -116,6 +118,19 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Thống kê");
 
+        jLabel15.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Dịch vụ");
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel18.setText("Nhân viên");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -129,6 +144,12 @@ public class Dashboard extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel11))
                 .addGap(42, 42, 42))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel18))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,8 +161,12 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel18)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 490, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
                 .addGap(29, 29, 29))
         );
@@ -162,7 +187,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(0, 102, 102));
         jLabel1.setFont(new java.awt.Font("Times New Roman", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
-        jLabel1.setText("Thống kê");
+        jLabel1.setText("Quản Lý Thống kê");
 
         jLabel7.setBackground(new java.awt.Color(0, 102, 102));
         jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -439,7 +464,7 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(261, Short.MAX_VALUE))
+                .addContainerGap(398, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -468,7 +493,7 @@ public class Dashboard extends javax.swing.JFrame {
     ///Thông báo về số khách hàng trong bảng khách hàng///
     private void CountCustomers() {
         try {
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb", "root", "123456");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb", "root", "14022004");
             St = Con.createStatement();
             Rs = St.executeQuery("select Count(*) from Customer");
             Rs.next();
@@ -482,7 +507,7 @@ public class Dashboard extends javax.swing.JFrame {
     int R;
     private void CountRooms() {
         try {
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb", "root", "123456");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb", "root", "14022004");
             St = Con.createStatement();
             Rs = St.executeQuery("select Count(*) from RoomTbl");
             Rs.next();
@@ -495,7 +520,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void InoByRoom() {
         try {
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb", "root", "123465");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb", "root", "14022004");
             St = Con.createStatement();
             Rs = St.executeQuery("select Sum(Cost) from BookingTbl where room = " + RoomCb.getSelectedItem().toString());
             Rs.next();
@@ -509,7 +534,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void TotalIncome() {
         try {
-            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb", "root", "123465");
+            Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb", "root", "14022004");
             St = Con.createStatement();
             Rs = St.executeQuery("select Sum(Cost) from BookingTbl ");
             Rs.next();
@@ -540,6 +565,11 @@ public class Dashboard extends javax.swing.JFrame {
         new Customer().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel3MouseClicked
+
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        new Services().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel15MouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -583,7 +613,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel7;

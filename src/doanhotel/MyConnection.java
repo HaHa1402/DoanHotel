@@ -10,7 +10,7 @@ public class MyConnection {
     public static Connection getConnection(){
         Connection con = null ;
         try {         
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb","root","123456");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb","root","14022004");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

@@ -11,7 +11,7 @@ public class DoanHotel {
     public static void main(String[] args) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb", "root", "123456");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb", "root", "14022004");
             // Tiếp tục với các thao tác trên cơ sở dữ liệu         
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(DoanHotel.class.getName()).log(Level.SEVERE, null, ex);

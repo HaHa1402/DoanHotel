@@ -37,6 +37,8 @@ public class Room extends javax.swing.JFrame {
         logoutBtn = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -105,6 +107,19 @@ public class Room extends javax.swing.JFrame {
             }
         });
 
+        jLabel15.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Dịch vụ");
+        jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel15MouseClicked(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Times New Roman", 3, 24)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Nhân viên");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -118,6 +133,12 @@ public class Room extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel11))
                 .addGap(42, 42, 42))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15)
+                    .addComponent(jLabel14))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,8 +150,12 @@ public class Room extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel15)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 210, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
                 .addGap(29, 29, 29))
         );
@@ -409,7 +434,7 @@ public class Room extends javax.swing.JFrame {
     private void ShowRooms()
     {
         try {
-            Con =DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb","root","123456");
+            Con =DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb","root","14022004");
             St = Con.createStatement();
             Rs = St.executeQuery("select * from RoomTbl");
             RoomList.setModel(DbUtils.resultSetToTableModel(Rs));        
@@ -421,7 +446,7 @@ public class Room extends javax.swing.JFrame {
     private void FilterByCat()
     {
         try {
-            Con =DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb","root","123456");
+            Con =DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb","root","14022004");
             St = Con.createStatement();
             Rs = St.executeQuery("select * from RoomTbl where RType = '" + CategoryRefre.getSelectedItem().toString()+ "'");
             RoomList.setModel(DbUtils.resultSetToTableModel(Rs));         
@@ -432,7 +457,7 @@ public class Room extends javax.swing.JFrame {
     private void FilterByStatus()
     {
         try {
-            Con =DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb","root","123456");
+            Con =DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb","root","14022004");
             St = Con.createStatement();
             Rs = St.executeQuery("select * from RoomTbl where RStatus = '"+StatusRefre.getSelectedItem().toString()+"'");
             RoomList.setModel(DbUtils.resultSetToTableModel(Rs));          
@@ -460,7 +485,7 @@ public class Room extends javax.swing.JFrame {
        }else{
            try {
                CountRooms();
-               Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb","root","123456");
+               Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb","root","14022004");
                PreparedStatement Save = Con.prepareStatement("insert into RoomTbl values(?,?,?,?,?) ");
                Save.setInt(1,Rid);
                Save.setString(2, RNameTb.getText().toString());
@@ -492,7 +517,7 @@ public class Room extends javax.swing.JFrame {
        }else{
            try {
                CountRooms();
-               Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb","root","123456");
+               Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb","root","14022004");
                PreparedStatement Save = Con.prepareStatement("delete from RoomTbl where RNum = " + Key);             
                int row =Save.executeUpdate();
                JOptionPane.showMessageDialog(this,"Room Deleted!!!");
@@ -521,7 +546,7 @@ public class Room extends javax.swing.JFrame {
        }else{
            try {
                CountRooms();
-               Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb","root","123456");
+               Con = DriverManager.getConnection("jdbc:mysql://localhost:3306/hoteldb","root","14022004");
                PreparedStatement Save = Con.prepareStatement("update RoomTbl set RName=?,RType=?,RStatus=?,RPrice=? where RNum = ? ");
                Save.setInt(5,Key);
                Save.setString(1, RNameTb.getText().toString());
@@ -583,6 +608,11 @@ public class Room extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jLabel11MouseClicked
 
+    private void jLabel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel15MouseClicked
+        new Services().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel15MouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -628,6 +658,8 @@ public class Room extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
